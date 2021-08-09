@@ -6,7 +6,6 @@ import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import { Button, Divider, Grid, makeStyles, Typography } from "@material-ui/core";
 import Address from "@reactioncommerce/components/Address/v1";
 import { i18next } from "/client/api";
-import useCurrentShopId from "/imports/client/ui/hooks/useCurrentShopId";
 
 const useStyles = makeStyles((theme) => ({
   "dividerSpacing": {
@@ -52,8 +51,12 @@ function OrderPrint(props) {
   const classes = useStyles();
   const { fulfillmentGroups } = order;
   const orderDate = new Date(order.createdAt).toLocaleDateString("en-US");
-  const [currentShopId] = useCurrentShopId();
-
+  const printAddress = address =>{
+    return{
+      fullName:address.description,
+      address1:address.address
+    }
+  }
   return (
     <Fragment>
       <Helmet title={`Order #${order.referenceId} printable invoice`} />
@@ -62,7 +65,7 @@ function OrderPrint(props) {
           <Grid container alignItems="center" direction="row" justify="space-between">
             <Grid item>
               <Button
-                href={`/${currentShopId}/orders/${order.referenceId}`}
+                href={`/orders/${order.referenceId}`}
               >
                 <ChevronLeftIcon className={classes.iconButton} />
                 Back
@@ -101,11 +104,11 @@ function OrderPrint(props) {
               <Grid container>
                 <Grid item xs={12} md={6}>
                   <Typography variant="h2" paragraph>Shipping address</Typography>
-                  <Address address={fulfillmentGroups[0].data.shippingAddress} />
+                  <Address address={printAddress(fulfillmentGroups[0].data.shippingAddress)} />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Typography variant="h2" paragraph>Billing address</Typography>
-                  <Address address={fulfillmentGroups[0].data.shippingAddress} />
+                  <Address address={printAddress(fulfillmentGroups[0].data.shippingAddress)} />
                 </Grid>
               </Grid>
               <Divider className={classes.dividerSpacing} />

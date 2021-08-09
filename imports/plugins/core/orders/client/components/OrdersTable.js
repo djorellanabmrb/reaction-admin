@@ -93,7 +93,7 @@ function OrdersTable() {
     },
     {
       Header: i18next.t("admin.table.headers.customer"),
-      accessor: "payments[0].billingAddress.fullName"
+      accessor: "payments[0].billingAddress.description"
     },
     {
       accessor: "summary.total.displayAmount",
@@ -155,8 +155,8 @@ function OrdersTable() {
 
   // Row click callback
   const onRowClick = useCallback(async ({ row }) => {
-    history.push(`/${shopId}/orders/${row.values.referenceId}`);
-  }, [history, shopId]);
+    history.push(`/orders/${row.values.referenceId}`);
+  }, [history]);
 
   const labels = useMemo(() => ({
     "globalFilterPlaceholder": i18next.t("admin.table.filter.globalFilter"),
