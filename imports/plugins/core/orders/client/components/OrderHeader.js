@@ -27,7 +27,7 @@ const styles = (theme) => ({
 function OrderHeader(props) {
   const { classes, moment, order } = props;
   const { createdAt, displayStatus, referenceId, status } = order;
-  const orderDate = (moment && moment(createdAt).format("MMMM DD, YYYY h:mm A")) || createdAt.toLocaleString();
+  const orderDate = (moment && moment(createdAt).format("DD/MM/YYYY h:mm A")) || createdAt.toLocaleString();
   const { payments } = order;
   const paymentStatuses = payments.map((payment) => payment.status);
   const uniqueStatuses = [...new Set(paymentStatuses)];
