@@ -68,7 +68,7 @@ export default class ShippingMethodForm extends Component {
             <ErrorsBlock names={["label"]} />
           </Field>
           <Field name="group" label={i18next.t("shippingMethod.group")} labelFor={groupInputId}>
-            <Select id={groupInputId} name="group" options={groupOptions}  value="Distancia" isReadOnly={true}/>
+            <Select id={groupInputId} name="group" options={groupOptions}  value="Ground"/>
             <ErrorsBlock names={["group"]} />
           </Field>
           <div style={{display:"none"}}>

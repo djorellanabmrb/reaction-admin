@@ -17,7 +17,8 @@ const fulfillmentMethodFormSchema = new SimpleSchema({
   label: String,
   group: {
     type: String,
-    allowedValues: ["Free", "Ground", "One Day", "Priority", "Distancia"]
+    allowedValues: ["Free", "Ground"/*, "One Day", "Priority"*/],
+    defaultValue: "Ground"
   },
   cost: {
     type: Number,
